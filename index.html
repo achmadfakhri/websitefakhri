@@ -1,70 +1,261 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>Beranda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Website Fakhri</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* --- RESET & STYLING DASAR --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ANIMASI KAMERA JATUH PERLAHAN --- */
+        @keyframes fallSlow {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .falling-camera {
+            position: fixed;
+            top: -50px;
+            left: 75%;
+            font-size: 26px;
+            animation: fallSlow 9s linear infinite;
+            z-index: 999;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        /* --- KONTAINER UTAMA --- */
+        .wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, #008080, #005959);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        header p em {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        /* --- NAVIGASI --- */
+        nav {
+            background-color: #1e293b;
+            padding: 12px 20px;
+            text-align: center;
+        }
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* --- LAYOUT UTAMA (GRID / FLEX) --- */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 30px;
+            gap: 30px;
+        }
+        main {
+            flex: 2;
+            min-width: 280px;
+        }
+        aside {
+            flex: 1;
+            min-width: 200px;
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+
+        /* --- KONTEN BERITA ---. */
+        .news-item {
+            margin-bottom: 30px;
+        }
+        .news-item h3 {
+            color: #0f172a;
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+        }
+        .news-date {
+            font-size: 0.85rem;
+            color: #64748b;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .news-item p {
+            color: #475569;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        .news-item a {
+            display: inline-block;
+            color: #008080;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .news-item a:hover {
+            color: #004d4d;
+            text-decoration: underline;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 25px 0;
+        }
+
+        /* --- SIDEBAR TAUTAN --- */
+        aside p {
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 6px;
+        }
+        aside ol {
+            padding-left: 20px;
+        }
+        aside ol li {
+            margin-bottom: 8px;
+        }
+        aside ol li a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        aside ol li a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .wrapper {
+                margin: 10px;
+                border-radius: 0;
+            }
+        }
+    </style>
 </head>
 
-<body bgcolor="darkgrey" background="images/background.svg">
-    <!-- Halaman web tanpa CSS. Murni hanya memakai HTML -->
-    <p>&nbsp;</p>
-    <table border="1" width="800px" cellpadding="12px" align="center" bgcolor="white">
-        <tr>
-            <td colspan="2" align="center" bgcolor="teal" background="images/jaring-teal.svg">
-                <font color="white">
-                    <p>&nbsp;</p>
-                    <h1>Website Fakhri</h1>
-                    <p><em>Tidak ada kata kata, Buktikan aksi nyata.</em></p>
-                    <p>&nbsp;</p>
-                </font>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" bgcolor="blue">
-                <a href="./">Beranda</a> |
-                <a href="tentang-saya.html">Tentang Saya</a> |
-                <a href="sekolahku.html">Sekolahku</a> |
-                <a href="syair-lagu.html">Syair Lagu</a>
-            </td>
-        </tr>
-        <tr>
-            <td width="75%">
-                <!-- Content utama -->
+<body>
 
-                <h3>Asap Karhutla di Atmosfer DKI hingga merah merah di peta NASA</h3>
-                <p align="right"><small><em>Senin, 7 September 2026</em></small></p>
-                <p>Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) mengungkap lapisan asap kebakaran hutan dan lahan (karhutla) sempat terdeteksi berada di atmosfer wilayah Jakarta. BMKG menyebut asap karhutla tersebut tak sampai di udara yang dihirup oleh masyarakat. Direktur Layanan Iklim Terapan BMKG Marjuki mengatakan keberadaan lapisan asap itu terpantau melalui citra satelit Himawari-9. Selain DKI Jakarta, lapisan asap terdeteksi berada di wilayah Banten dan Jawa Barat.</p>
-                <p><a href="berita/berita-1.html">Selanjutnya</a></p>
+    <!-- Animasi Icon Kamera Jatuh Perlahan -->
+    <div class="falling-camera">📷</div>
+
+    <div class="wrapper">
+        <!-- Header Website -->
+        <header>
+            <h1>Website Fakhri</h1>
+            <p><em>Tidak ada kata kata, Buktikan aksi nyata.</em></p>
+        </header>
+
+        <!-- Navigasi -->
+        <nav>
+            <a href="./">Beranda</a> |
+            <a href="tentang-saya.html">Tentang Saya</a> |
+            <a href="sekolahku.html">Sekolahku</a> |
+            <a href="syair-lagu.html">Syair Lagu</a>
+        </nav>
+
+        <!-- Konten Utama & Sidebar -->
+        <div class="container">
+            <main>
+                <!-- Berita 1 -->
+                <div class="news-item">
+                    <h3>Asap Karhutla di Atmosfer DKI hingga merah merah di peta NASA</h3>
+                    <div class="news-date"><em>Senin, 7 September 2026</em></div>
+                    <p>Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) mengungkap lapisan asap kebakaran hutan dan lahan (karhutla) sempat terdeteksi berada di atmosfer wilayah Jakarta. BMKG menyebut asap karhutla tersebut tak sampai di udara yang dihirup oleh masyarakat. Direktur Layanan Iklim Terapan BMKG Marjuki mengatakan keberadaan lapisan asap itu terpantau melalui citra satelit Himawari-9. Selain DKI Jakarta, lapisan asap terdeteksi berada di wilayah Banten dan Jawa Barat.</p>
+                    <p><a href="berita/berita-1.html">Selanjutnya &rarr;</a></p>
+                </div>
 
                 <hr>
 
-                <h3>Lomba Pembuatan Video</h3>
-                <p align="right"><small><em>Jumat, 4 September 2026</em></small></p>
-                <p>Telah dibuka pendaftaran lomba pembuatan video pendek
-                tentang pariwisata di Tangerang. Lomba ini bekerja sama dengan
-                MGMP DKV Kota Tangerang, yang bertujuan untuk memperkenalkan
-                pariwisata yang ada di kota Tangerang.</p>
-                <p><a href="berita/berita-2.html">Selanjutnya</a></p>
+                <!-- Berita 2 -->
+                <div class="news-item">
+                    <h3>Lomba Pembuatan Video</h3>
+                    <div class="news-date"><em>Jumat, 4 September 2026</em></div>
+                    <p>Telah dibuka pendaftaran lomba pembuatan video pendek tentang pariwisata di Tangerang. Lomba ini bekerja sama dengan MGMP DKV Kota Tangerang, yang bertujuan untuk memperkenalkan pariwisata yang ada di kota Tangerang.</p>
+                    <p><a href="berita/berita-2.html">Selanjutnya &rarr;</a></p>
+                </div>
+            </main>
 
-                <!-- Akhir dari content utama -->
-            </td>
-            <td width="25%" valign="top" bgcolor="lightgrey">
-                <p>Tautan eksternal</p>
+            <!-- Sidebar Tautan Eksternal -->
+            <aside>
+                <p>Tautan Eksternal</p>
                 <ol>
-                    <li><a href="https://www.mawan.or.id">Website Fakhri</a></li>
-                    <li><a href="https://www.github.com">Github</a></li>
-                    <li><a href="https://www.wikipedia.org">Wikipedia</a></li>
-                    <li><a href="https://www.w3schools.com">W3Schools</a></li>
+                    <li><a href="https://www.mawan.or.id" target="_blank">Website Fakhri</a></li>
+                    <li><a href="https://www.github.com" target="_blank">Github</a></li>
+                    <li><a href="https://www.wikipedia.org" target="_blank">Wikipedia</a></li>
+                    <li><a href="https://www.w3schools.com" target="_blank">W3Schools</a></li>
                 </ol>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="right" bgcolor="black">
-                <font color="white"><small>&copy; Copyright Achmad Fakhri Fajar Irawan, 2026.</small></font>
-            </td>
-        </tr>
-    </table>
-    <p>&nbsp;</p>
-</body>
+            </aside>
+        </div>
 
+        <!-- Footer -->
+        <footer>
+            <small>&copy; Copyright Achmad Fakhri Fajar Irawan, 2026.</small>
+        </footer>
+    </div>
+
+</body>
 </html>
